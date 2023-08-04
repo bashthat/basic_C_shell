@@ -170,8 +170,13 @@ int main(int argc, char **argv){
             continue;
         }
 
-        // 
+        // who am i
 
+        if (strcmp(command, "whoami") == 0) {
+            system("whoami");
+            continue;
+        }
+        
         // parse and execute command
         char *args[MAX_INPUT_SIZE / 2 + 1];
         parse_command(command, args);
