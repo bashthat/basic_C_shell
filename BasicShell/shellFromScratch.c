@@ -118,19 +118,70 @@ int main(int argc, char **argv){
             continue;
         }
 
-        // make a new directory
+        // git status
 
-        if (strcmp(command, "mkdir") == 0) {
-            system("mkdir");
+        if (strcmp(command, "git status") == 0) {
+            system("git status");
             continue;
         }
 
-        // change directory
+        // git add
 
-        if (strcmp(command, "cd") == 0) {
-            system("cd");
+        if (strcmp(command, "git add") == 0) {
+            system("git add");
             continue;
         }
+
+        // git commit
+
+        if (strcmp(command, "git commit") == 0) {
+            system("git commit");
+            continue;
+        }
+
+        // git push
+
+        if (strcmp(command, "git push") == 0) {
+            system("git push");
+            continue;
+        }
+
+        // git pull
+
+        if (strcmp(command, "git pull") == 0) {
+            system("git pull");
+            continue;
+        }
+
+        // git clone
+
+        if (strcmp(command, "git clone") == 0) {
+            system("git clone");
+            continue;
+        }
+
+        // git checkout
+
+        if (strcmp(command, "git checkout") == 0) {
+            system("git checkout");
+            continue;
+        }
+
+        // git branch
+
+        if (strcmp(command, "git branch") == 0) {
+            system("git branch");
+            continue;
+        }
+
+        // git fetch
+
+        if (strcmp(command, "git fetch") == 0) {
+            system("git fetch");
+            continue;
+        }
+
+
         
 
         // print environment variables
