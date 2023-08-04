@@ -153,27 +153,6 @@ int main(int argc, char **argv){
             continue;
         }
 
-        // git clone
-
-        if (strcmp(command, "git clone") == 0) {
-            system("git clone");
-            continue;
-        }
-
-        // git checkout
-
-        if (strcmp(command, "git checkout") == 0) {
-            system("git checkout");
-            continue;
-        }
-
-        // git branch
-
-        if (strcmp(command, "git branch") == 0) {
-            system("git branch");
-            continue;
-        }
-
         // git fetch
 
         if (strcmp(command, "git fetch") == 0) {
@@ -218,8 +197,9 @@ int main(int argc, char **argv){
 
     }
     }
-        printf("BumbleBeeTuna!...\n");
-        printf("====================\n  ...Goodbye!...\n====================\n");
+        // exit the shell message
+
+        printf("%s", EXIT_MSG);
 
         return 0;
 }

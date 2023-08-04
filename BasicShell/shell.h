@@ -15,6 +15,8 @@
 #define PROMPT ANSI_COLOR_CYAN "myshell> " ANSI_COLOR_RESET
 #define HISTORY_PROMPT "history> "
 #define HISTORY_FILE ".myshell_history"
+#define HISTORY_FILE_PATH "/home/akshay/.myshell_history"
+#define EXIT_MSG ANSI_COLOR_RED "====================\n  ...Goodbye!...\n====================\n" ANSI_COLOR_RESET
 #define WELCOME_MSG ANSI_COLOR_MAGENTA "Welcome to myshell!\nType exit to exit the shell\n\n\n=============================================\n\nPLEASE LEAVE A REVIEW!!\nTHANKS FOR TESTING!!\n=============================================\n" ANSI_COLOR_RESET
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
