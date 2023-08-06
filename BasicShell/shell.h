@@ -38,7 +38,7 @@
 #define ANSI_COLOR_BRIGHT_GRAY    "\x1b[37m"
 #define TOK_DELIM " \t\r\n\a"
 #define HISTORY_DELIM "\n"
-#define HISTORY_SIZE 100
+#define HISTORY_SIZE 500
 #define HISTORY_FILE ".myshell_history"
 #define HISTORY_FILE_PATH "/home/akshay/.myshell_history"
 #define TOK_BUFSIZE 64

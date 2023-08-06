@@ -59,78 +59,7 @@ int exit_status(void)
     return status;
 }
 
-// execute function to execute the command
 
-int execute(char **args)
-{
-    int i = 0;
-    if (args[0] == NULL)
-    {
-        // An empty command was entered.
-        return 1;
-    }
-    else if (strcmp(args[0], "exit") == 0)
-    {
-        // exit command
-        return 0;
-    }
-    else if (strcmp(args[0], "cd") == 0)
-    {
-        // cd command
-        if (args[1] == NULL)
-        {
-            fprintf(stderr, "myshell: expected argument to \"cd\"\n");
-        }
-        else
-        {
-            if (chdir(args[1]) != 0)
-            {
-                perror("myshell");
-            }
-        }
-        return 1;
-    }
-    else if (strcmp(args[0], "history") == 0)
-    {
-        // history command
-        FILE *fp;
-        fp = fopen("history.txt", "r");
-        char c;
-        c = fgetc(fp);
-        while (c != EOF)
-        {
-            printf("%c", c);
-            c = fgetc(fp);
-        }
-        fclose(fp);
-        return 1;
-    }
-    else
-    {
-        // fork() creates a new process
-        pid_t pid = fork();
-        if (pid == 0)
-        {
-            // child process
-            if (execvp(args[0], args) == -1)
-            {
-                perror("myshell");
-            }
-            exit(EXIT_FAILURE);
-        }
-        else if (pid < 0)
-        {
-            // error forking
-            perror("myshell");
-        }
-        else
-        {
-            // parent process
-            wait(NULL);
-        }
-        return 1;
-    }
-}
 
 // PATH handling
 
@@ -152,8 +81,12 @@ void path_handling(char **args){
         i++;
     }
 }
+// creating atty as a file descriptor to check if the input is from a terminal or not
 
-// Cat Command
+int isatty(int fd)
+{
+    return 1;
+}
 
 
 // History Command
@@ -163,6 +96,17 @@ void history_command(char *command){
     fp = fopen("history.txt", "a");
     fprintf(fp, "%s\n", command);
     fclose(fp);
+}
+
+// concatonate command and arguments
+
+void concat_command(char *command, char **args){
+    int i = 0;
+    while(args[i] != NULL){
+        strcat(command, args[i]);
+        strcat(command, " ");
+        i++;
+    }
 }
 
 // git add * command   
@@ -225,6 +169,11 @@ int main(int argc, char **argv){
         if (command[length - 1] == '\n') {
             command[length - 1] = '\0';
 
+        // isatty() returns 1 if the file descriptor is associated with a terminal; otherwise 0 is returned
+
+        // if (isatty(STDIN_FILENO)) {
+        //    printf("%s", PROMPT);
+        //}
         
         // Exit if the user entered "exit"
 
@@ -232,11 +181,27 @@ int main(int argc, char **argv){
         if (strcmp(command, "exit") == 0) {
             break;
         }
-                
+        
         // clear the screen
 
         if (strcmp(command, "clear") == 0) {
             system("clear");
+            continue;
+        }
+        // cat command
+
+        if (strncmp(command, "cat ", 4) == 0) {
+            char *path = command + 4;
+            FILE *fp;
+            fp = fopen(path, "r");
+            char c;
+            c = fgetc(fp);
+            while (c != EOF)
+            {
+                printf("%c", c);
+                c = fgetc(fp);
+            }
+            fclose(fp);
             continue;
         }
 
