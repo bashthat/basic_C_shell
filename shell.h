@@ -8,6 +8,8 @@
 #include<sys/types.h>
 #include<sys/wait.h>
 
+/* creating perameters to the shell */
+
 #define MAX_INPUT_SIZE 1024
 #define MAX_NUM_ARGS 64
 #define MAX_NUM_PATHS 100
